@@ -1,3 +1,4 @@
+# bri-ish-translator
 Please follow the instructions below before using your copy of deltah's bri'ish translator.
 
 1. Download the latest version of Python. (www.python.org/downloads)
@@ -6,3 +7,4 @@ Please follow the instructions below before using your copy of deltah's bri'ish 
 3. You can then close the command prompt, and double-click the translator.py file to start running it. Follow the instructions from there.
 
 Report any bugs to @deltah#0404
+© 
