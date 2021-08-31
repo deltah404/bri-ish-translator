@@ -8,3 +8,6 @@ Please follow the instructions below before using your copy of deltah's bri'ish 
 
 Report any bugs to @deltah#0404 or @SPITFIRE#4609
 © 
+
+Feel free to add or change any settings in the config.json file, make changes to the code and request to edit!
+Please don't redistribute any original version as your own because it'll make me big sad :(
