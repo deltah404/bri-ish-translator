@@ -1,0 +1,20 @@
+{
+    "name": "deltah's bri'ish translator",
+    "version": "1.0.3",
+
+    "nexceptions": [
+        "a",
+        "fuck",
+        "i",
+        "why"
+    ],
+    "phraseendings": [
+        ", my g",
+        ", inni' bruv",
+        ", still"
+    ],
+    "wordreplacements": {
+        "i": "man",
+        "gang": "mandem"
+    }
+}
