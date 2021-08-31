@@ -6,7 +6,8 @@
         "a",
         "fuck",
         "i",
-        "why"
+        "why",
+        "me"
     ],
     "phraseendings": [
         ", my g",
@@ -15,6 +16,8 @@
     ],
     "wordreplacements": {
         "i": "man",
-        "gang": "mandem"
+        "gang": "mandem",
+        "with": "wiv",
+        "water": "wo'ah"
     }
 }

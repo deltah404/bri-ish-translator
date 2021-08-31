@@ -19,20 +19,9 @@ with open('./config.json') as ifile:
     
 toTranslate = input(f'{name} v{version}\n>> ').lower()
 
-# individual rules -----
-# word replacements
-wordReplaced = ''
-for word in toTranslate.split(' '):
-    if word in word_replacements.keys():
-        newword = word_replacements[word]
-    else:
-        newword = word
-    wordReplaced += newword+' '
-
-# universal rules -----
 # insert fuckin' before each noun
 nounCussing = ''
-for word in wordReplaced.split(' '):
+for word in toTranslate.split(' '):
     if word in ['fucking','fuckin\'']:
         word = ''
         
@@ -44,9 +33,20 @@ for word in wordReplaced.split(' '):
     newword = f'fuckin\' {word}' if tmp == 'n' and word not in noun_exceptions else word
     nounCussing += f'{newword} '
 
+# individual rules -----
+# word replacements
+wordReplaced = ''
+for word in nounCussing.split(' '):
+    if word in word_replacements.keys():
+        newword = word_replacements[word]
+    else:
+        newword = word
+    wordReplaced += newword+' '
+
+# universal rules -----
 # -replace t with '
 tSilencing = ''
-for c in nounCussing:
+for c in wordReplaced:
     tSilencing += '\'' if c == 't' else c
     
 res = tSilencing[:-2]+choice(endings)
