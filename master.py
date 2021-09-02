@@ -30,6 +30,5 @@ while True:
     try:
         if keyboard.is_pressed('1'):
             subprocess.call('start /wait py -3 ./modules/translator.py', shell=True)
-            sys.exit()
     except:
         break
