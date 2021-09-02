@@ -10,14 +10,13 @@ with open('./config.json') as ifile:
     name = idict['name']
     version = idict['version']
     mhk = idict['modulehotkeys']
-    
-print(f'Thanks for supporting {name}. As this is your first time, please wait while everything gets set up.')
 
 required = {'keyboard'}
 installed = {pkg.key for pkg in pkg_resources.working_set}
 missing = required - installed
 
 if missing:
+    print(f'Thanks for supporting {name}. As this is your first time, please wait while everything gets set up.')
     python = sys.executable
     for m in missing:
         subprocess.check_call(['pip', 'install', m], stdout=subprocess.PIPE)
