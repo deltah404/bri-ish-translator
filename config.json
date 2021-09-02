@@ -1,6 +1,6 @@
 {
     "name": "deltah's bri'ish translator",
-    "version": "1.0.3",
+    "version": "1.0.4",
 
     "nexceptions": [
         "a",
@@ -12,12 +12,17 @@
     "phraseendings": [
         ", my g",
         ", inni' bruv",
-        ", still"
+        ", still",
+        ", you silly cunt"
     ],
     "wordreplacements": {
         "i": "man",
         "gang": "mandem",
         "with": "wiv",
-        "water": "wo'ah"
+        "water": "wo'ah",
+        "bottle": "bo'owh"
+    },
+    "modulehotkeys": {
+        "Translator": "1"
     }
 }

@@ -1,21 +1,34 @@
 import wn
 import json
+import sys
+import subprocess
+import pkg_resources
 from random import choice
 
-print('Anything within this section is simply setup. Please wait.\n----------')
-try:
-    wn.data.find('goodmami/wn')
-except:
-    wn.download('ewn:2020')
-print('----------')
-
-with open('./config.json') as ifile:
+with open('././config.json') as ifile:
     idict = json.load(ifile)
     name = idict['name']
     version = idict['version']
     noun_exceptions = idict['nexceptions']
     endings = idict['phraseendings']
     word_replacements = idict['wordreplacements']
+
+required = {'wn'}
+installed = {pkg.key for pkg in pkg_resources.working_set}
+missing = required - installed
+
+if missing:
+    print(f'Thanks for supporting {name}. As this is your first time, please wait while everything gets set up.')
+    python = sys.executable
+    for m in missing:
+        subprocess.check_call(['pip', 'install', m], stdout=subprocess.PIPE)
+    
+print('Anything within this section is simply setup. Please wait.\n-------------------------')
+try:
+    wn.data.find('goodmami/wn')
+except:
+    wn.download('ewn:2020')
+print('-------------------------')
     
 toTranslate = input(f'{name} v{version}\n>> ').lower()
 
