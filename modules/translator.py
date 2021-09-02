@@ -57,12 +57,19 @@ for word in nounCussing.split(' '):
     wordReplaced += newword+' '
 
 # universal rules -----
-# -replace t with '
+# -replace t with ' except at beginning of word
+transformBlock = ''
 tSilencing = ''
-for c in wordReplaced:
+for w in wordReplaced.split(' '):
+    if w.startswith('t'):
+        transformBlock += w.capitalize()+' '
+    else:
+        transformBlock += w+' '
+        
+for c in transformBlock:
     tSilencing += '\'' if c == 't' else c
     
-res = tSilencing[:-2]+choice(endings)
+res = tSilencing[:-3]+choice(endings)
 
 # grammatical resolving -----
 # remove duplicate punctuation
@@ -77,6 +84,6 @@ for c in res:
     filteredText += char
 
 print('\n')
-print(filteredText)
+print(filteredText.lower())
 print('^\nPress enter to exit.')
 input()

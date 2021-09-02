@@ -7,7 +7,8 @@
         "fuck",
         "i",
         "why",
-        "me"
+        "me",
+        "it"
     ],
     "phraseendings": [
         ", my g",
@@ -20,7 +21,12 @@
         "gang": "mandem",
         "with": "wiv",
         "water": "wo'ah",
-        "bottle": "bo'owh"
+        "bottle": "bo'owh",
+        "this": "'is",
+        "tea": "Tee",
+        "coffee": "Tee",
+        "have": "'av",
+        "that": "'at"
     },
     "modulehotkeys": {
         "Translator": "1"
