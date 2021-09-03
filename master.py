@@ -9,6 +9,7 @@ with open('./config.json') as ifile:
     name = idict['name']
     version = idict['version']
     mhk = idict['modulehotkeys']
+    alsolist = idict['alsolist']
     
 required = {'keyboard','pandas'}
 installed = {pkg.key for pkg in pkg_resources.working_set}
@@ -31,7 +32,7 @@ print(f'{name} v{version}\n\n~~MENU~~\nModule select:')
 
 for m in mhk:
     print(f'Press {mhk[m]} for {m}')
-print('\nALSO:\nPress G to copy GitHub link\nPress H to reshow hotkey list')
+print(alsolist)
 
 while True:
     # cooldown to stop spam glitches
@@ -46,6 +47,8 @@ while True:
             print('\n~~MENU~~\nModule select:')
             for m in mhk:
                 print(f'Press {mhk[m]} for {m}')
-            print('\nALSO:\nPress G to copy GitHub link\nPress H to reshow hotkey list')
+            print(alsolist)
+        elif keyboard.is_pressed('q'):
+            sys.exit()
     except:
         break

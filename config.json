@@ -1,6 +1,6 @@
 {
     "name": "deltah's bri'ish translator",
-    "version": "1.1.0",
+    "version": "1.1.1",
 
     "nexceptions": [
         "a",
@@ -8,7 +8,9 @@
         "i",
         "why",
         "me",
-        "it"
+        "it",
+        "mate",
+        "like"
     ],
     "phraseendings": [
         ", my g",
@@ -17,7 +19,7 @@
         ", you silly cunt"
     ],
     "wordreplacements": {
-        "i": "man",
+        "i": "oi",
         "gang": "mandem",
         "with": "wiv",
         "water": "wo'ah",
@@ -26,9 +28,12 @@
         "tea": "Tee",
         "coffee": "Tee",
         "have": "'av",
-        "that": "'at"
+        "that": "'at",
+        "mate": "moiTe",
+        "stupid": "sTewpid"
     },
     "modulehotkeys": {
         "Translator": "1"
-    }
+    },
+    "alsolist": "\nALSO:\nPress G to copy GitHub link\nPress H to reshow hotkey list\nPress Q to exit"
 }

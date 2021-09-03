@@ -37,7 +37,7 @@ toTranslate = input(f'{name} v{version}\n>> ').lower()
 
 nounCussing = ''
 for word in toTranslate.split(' '):
-    if word in ['fucking','fuckin\'']:
+    if word == 'bloody':
         word = ''
         
     try:
@@ -45,7 +45,7 @@ for word in toTranslate.split(' '):
     except:
         tmp = '.'
         
-    newword = f'fuckin\' {word}' if tmp == 'n' and word not in noun_exceptions else word
+    newword = choice([f'bloody {word}',f'fuckin\' {word}']) if tmp == 'n' and word not in noun_exceptions else word
     nounCussing += f'{newword} '
 
 wordReplaced = ''
