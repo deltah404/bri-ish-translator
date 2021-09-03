@@ -18,7 +18,10 @@ installed = {pkg.key for pkg in pkg_resources.working_set}
 missing = required - installed
 
 if missing:
-    print(f'Thanks for supporting {name}. As this is your first time, please wait while everything gets set up.')
+    if missing == required:
+        print(f'Thanks for supporting {name}. As this is your first time, please wait while everything gets set up.')
+    else:
+        print(f'You don\'t have all the required files for DBT. Please wait while the missing items are installed.')
     python = sys.executable
     for m in missing:
         subprocess.check_call(['pip', 'install', m], stdout=subprocess.PIPE)
@@ -32,7 +35,6 @@ print('-------------------------')
     
 toTranslate = input(f'{name} v{version}\n>> ').lower()
 
-# insert fuckin' before each noun
 nounCussing = ''
 for word in toTranslate.split(' '):
     if word in ['fucking','fuckin\'']:
@@ -46,8 +48,6 @@ for word in toTranslate.split(' '):
     newword = f'fuckin\' {word}' if tmp == 'n' and word not in noun_exceptions else word
     nounCussing += f'{newword} '
 
-# individual rules -----
-# word replacements
 wordReplaced = ''
 for word in nounCussing.split(' '):
     if word in word_replacements.keys():
@@ -56,13 +56,13 @@ for word in nounCussing.split(' '):
         newword = word
     wordReplaced += newword+' '
 
-# universal rules -----
-# -replace t with ' except at beginning of word
 transformBlock = ''
 tSilencing = ''
 for w in wordReplaced.split(' '):
     if w.startswith('t'):
         transformBlock += w.capitalize()+' '
+    elif w.startswith('h'):
+        transformBlock += '\''+w[1:]+' '
     else:
         transformBlock += w+' '
         
@@ -71,8 +71,6 @@ for c in transformBlock:
     
 res = tSilencing[:-3]+choice(endings)
 
-# grammatical resolving -----
-# remove duplicate punctuation
 last = ''
 filteredText = ''
 for c in res:
@@ -83,7 +81,7 @@ for c in res:
     last = char
     filteredText += char
 
-print('\n')
+print(toTranslate)
 print(filteredText.lower())
-print('^\nPress enter to exit.')
+print('\nPress enter to exit.')
 input()
