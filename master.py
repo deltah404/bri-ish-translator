@@ -49,6 +49,7 @@ while True:
                 print(f'Press {mhk[m]} for {m}')
             print(alsolist)
         elif keyboard.is_pressed('q'):
+            print('Closing...')
             sys.exit()
     except:
         break

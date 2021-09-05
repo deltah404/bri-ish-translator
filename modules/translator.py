@@ -3,6 +3,7 @@ import json
 import sys
 import subprocess
 import pkg_resources
+from datetime import datetime
 from random import choice
 
 with open('././config.json') as ifile:
@@ -37,14 +38,12 @@ toTranslate = input(f'{name} v{version}\n>> ').lower()
 
 nounCussing = ''
 for word in toTranslate.split(' '):
-    if word == 'bloody':
+    if word in ['bloody','fuck','fucking','fuckin\'']:
         word = ''
-        
     try:
         tmp = wn.synsets(word)[0].pos
     except:
         tmp = '.'
-        
     newword = choice([f'bloody {word}',f'fuckin\' {word}']) if tmp == 'n' and word not in noun_exceptions else word
     nounCussing += f'{newword} '
 
@@ -81,7 +80,10 @@ for c in res:
     last = char
     filteredText += char
 
-print(toTranslate)
+now = datetime.now()
+with open(f'././history/translator/{now.strftime(r"%b-%d-%Y-%H-%M-%S")}', 'w') as hf:
+    hf.write(filteredText.lower())
+
 print(filteredText.lower())
 print('\nPress enter to exit.')
 input()

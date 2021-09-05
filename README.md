@@ -13,3 +13,5 @@ Report any bugs or suggestions to @deltah#0404 or @SPITFIRE#4609
 
 Feel free to add or change any settings in the config.json file, make changes to the code and request to edit!
 Please don't redistribute any original version as your own because it'll make me big sad :(
+
+#### If DBT suddenly closes suddenly and you're running Windows, please report it. This is because there is an error in the code which can be fixed once it's known about. If you aren't using Windows, there isn't much that can be done because DBT was developed for Windows and not any other OS.
