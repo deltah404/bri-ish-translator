@@ -1,6 +1,6 @@
 {
     "name": "deltah's bri'ish translator",
-    "version": "1.1.3",
+    "version": "1.2.0",
 
     "nexceptions": [
         "a",
@@ -37,5 +37,5 @@
     "modulehotkeys": {
         "Translator": "1"
     },
-    "alsolist": "\nALSO:\nPress G to copy GitHub link\nPress H to reshow hotkey list\nPress Q to close"
+    "alsolist": "\nALSO:\nPress G to copy GitHub link\nPress H to reshow hotkey list\nPress Q to close\nPress S to open Suggestions and Reports page"
 }

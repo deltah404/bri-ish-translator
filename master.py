@@ -2,6 +2,7 @@ import pkg_resources
 import sys
 import subprocess
 import json
+import webbrowser
 from time import sleep as s
 
 with open('./resources/config.json', 'r') as ifile:
@@ -56,5 +57,7 @@ while True:
         elif keyboard.is_pressed('q'):
             print('Closing...')
             sys.exit()
+        elif keyboard.is_pressed('s'):
+            webbrowser.open('https://www.dbtranslator.tk/report/')
     except:
         break
