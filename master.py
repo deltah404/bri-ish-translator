@@ -4,16 +4,21 @@ import subprocess
 import json
 from time import sleep as s
 
-with open('./config.json') as ifile:
+with open('./resources/config.json', 'r') as ifile:
     idict = json.load(ifile)
     name = idict['name']
     version = idict['version']
     mhk = idict['modulehotkeys']
     alsolist = idict['alsolist']
+
+with open('./resources/menu-title.txt', 'r') as tfile:
+    print(f'====================================\n{tfile.read()}v{version}\n\n====================================')
     
 required = {'keyboard','pandas'}
 installed = {pkg.key for pkg in pkg_resources.working_set}
 missing = required - installed
+
+print()
 
 if missing:
     if missing == required:
@@ -28,7 +33,7 @@ if missing:
 import keyboard
 from pandas.io import clipboard
     
-print(f'{name} v{version}\n\n~~MENU~~\nModule select:')
+print(f'{name}\n\n~~MENU~~\nModule select:')
 
 for m in mhk:
     print(f'Press {mhk[m]} for {m}')

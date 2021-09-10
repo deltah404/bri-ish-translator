@@ -6,7 +6,7 @@ import pkg_resources
 from datetime import datetime
 from random import choice
 
-with open('././config.json') as ifile:
+with open('././resources/config.json') as ifile:
     idict = json.load(ifile)
     name = idict['name']
     version = idict['version']
