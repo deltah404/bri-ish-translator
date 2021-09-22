@@ -1,4 +1,4 @@
-import wn
+import os
 import json
 import sys
 import subprocess
@@ -6,84 +6,99 @@ import pkg_resources
 from datetime import datetime
 from random import choice
 
-with open('././resources/config.json') as ifile:
-    idict = json.load(ifile)
-    name = idict['name']
-    version = idict['version']
-    noun_exceptions = idict['nexceptions']
-    endings = idict['phraseendings']
-    word_replacements = idict['wordreplacements']
+def translate(t, rawTranslator=False, saveHistory=False):
+    with open('././resources/config.json') as ifile:
+        idict = json.load(ifile)
+        name = idict['name']
+        version = idict['version']
+        noun_exceptions = idict['nexceptions']
+        endings = idict['phraseendings']
+        word_replacements = idict['wordreplacements']
 
-required = {'wn'}
-installed = {pkg.key for pkg in pkg_resources.working_set}
-missing = required - installed
+    with open('././resources/menu-title.txt', 'r') as tfile:
+        title = tfile.read()
+    if rawTranslator:
+        print(title)
 
-if missing:
-    if missing == required:
-        print(f'Thanks for supporting {name}. As this is your first time, please wait while everything gets set up.')
-    else:
-        print(f'You don\'t have all the required files for DBT. Please wait while the missing items are installed.')
-    python = sys.executable
-    for m in missing:
-        subprocess.check_call(['pip', 'install', m], stdout=subprocess.PIPE)
-    
-print('Anything within this section is simply setup. Please wait.\n-------------------------')
-try:
-    wn.data.find('goodmami/wn')
-except:
-    wn.download('ewn:2020')
-print('-------------------------')
-    
-toTranslate = input(f'{name} v{version}\n>> ').lower()
+    required = {'wn', 'nltk'}
+    installed = {pkg.key for pkg in pkg_resources.working_set}
+    missing = required - installed
 
-nounCussing = ''
-for word in toTranslate.split(' '):
-    if word in ['bloody','fuck','fucking','fuckin\'']:
-        word = ''
+    if missing:
+        if missing == required and rawTranslator:
+            print(
+                f'Thanks for supporting {name} v{version}. As this is your first time, please wait while everything gets set up.')
+        elif missing != required and rawTranslator:
+            print(f'You don\'t have all the required files for DBT. Please wait while the missing items are installed.')
+        python = sys.executable
+        for m in missing:
+            subprocess.check_call(['pip', 'install', m],
+                                  stdout=subprocess.PIPE)
+
+    import wn
+    import nltk
+
     try:
-        tmp = wn.synsets(word)[0].pos
+        nltk.data.find('wordnet', quiet=True)
     except:
-        tmp = '.'
-    newword = choice([f'bloody {word}',f'fuckin\' {word}']) if tmp == 'n' and word not in noun_exceptions else word
-    nounCussing += f'{newword} '
+        nltk.download('wordnet', quiet=True)
 
-wordReplaced = ''
-for word in nounCussing.split(' '):
-    if word in word_replacements.keys():
-        newword = word_replacements[word]
-    else:
-        newword = word
-    wordReplaced += newword+' '
+    nounCussing = ''
+    for word in t.split(' '):
+        if word in ['bloody', 'fuck', 'fucking', 'fuckin\'']:
+            word = ''
+        try:
+            tmp = wn.synsets(word)[0].pos
+        except:
+            tmp = '.'
+        newword = choice([f'bloody {word}', f'fuckin\' {word}']
+                         ) if tmp == 'n' and word not in noun_exceptions else word
+        nounCussing += f'{newword} '
 
-transformBlock = ''
-tSilencing = ''
-for w in wordReplaced.split(' '):
-    if w.startswith('t'):
-        transformBlock += w.capitalize()+' '
-    elif w.startswith('h'):
-        transformBlock += '\''+w[1:]+' '
-    else:
-        transformBlock += w+' '
-        
-for c in transformBlock:
-    tSilencing += '\'' if c == 't' else c
-    
-res = tSilencing[:-3]+choice(endings)
+    wordReplaced = ''
+    for word in nounCussing.split(' '):
+        if word in word_replacements.keys():
+            newword = word_replacements[word]
+        else:
+            newword = word
+        wordReplaced += newword+' '
 
-last = ''
-filteredText = ''
-for c in res:
-    if c in ['\'',' '] and c == last:
-        char = ''
-    else:
-        char = c
-    last = char
-    filteredText += char
+    transformBlock = ''
+    tSilencing = ''
+    for w in wordReplaced.split(' '):
+        if w.startswith('t'):
+            transformBlock += w.capitalize()+' '
+        elif w.startswith('h'):
+            transformBlock += '\''+w[1:]+' '
+        else:
+            transformBlock += w+' '
 
-now = datetime.now()
-with open(f'././history/translator/{now.strftime(r"%b-%d-%Y-%H-%M-%S")}', 'w') as hf:
-    hf.write(filteredText.lower())
+    for c in transformBlock:
+        tSilencing += '\'' if c == 't' else c
 
-print(filteredText.lower())
-print('\nPress enter to exit.')
-input()
+    res = tSilencing[:-3]+choice(endings)
+
+    last = ''
+    filteredText = ''
+    for c in res:
+        if c in ['\'', ' '] and c == last:
+            char = ''
+        else:
+            char = c
+        last = char
+        filteredText += char
+
+    if saveHistory:
+        now = datetime.now()
+        with open(f'././history/translator/{now.strftime(r"%b-%d-%Y-%H-%M-%S")}', 'w') as hf:
+            hf.write(filteredText.lower())
+
+    return filteredText
+
+
+if __name__ == "__main__":
+    str_to_translate = input('>> ').lower()
+    print('...')
+    print(translate(str_to_translate, True, True))
+    print('\nPress enter to exit.')
+    input()

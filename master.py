@@ -19,8 +19,6 @@ required = {'keyboard','pandas'}
 installed = {pkg.key for pkg in pkg_resources.working_set}
 missing = required - installed
 
-print()
-
 if missing:
     if missing == required:
         print(f'Thanks for supporting {name}. As this is your first time, please wait while everything gets set up.')
@@ -33,7 +31,10 @@ if missing:
 # new library imports
 import keyboard
 from pandas.io import clipboard
-    
+
+def openModule(path):
+    subprocess.call(f'start /wait py -3 {path}', shell=True)
+
 print(f'{name}\n\n~~MENU~~\nModule select:')
 
 for m in mhk:
@@ -41,11 +42,14 @@ for m in mhk:
 print(alsolist)
 
 while True:
-    # cooldown to stop spam glitches
-    s(0.1)
+    s(0.1) #? cooldown to stop spam glitches
     try:
         if keyboard.is_pressed('1'):
-            subprocess.call('start /wait py -3 ./modules/translator.py', shell=True)
+            openModule('./modules/translator.py')
+        #elif keyboard.is_pressed('2'):
+        #    openModule('./modules/cleaner.py')
+        # This will be implemented in a future update ^
+            
         elif keyboard.is_pressed('g'):
             clipboard.copy('https://github.com/deltah404/bri-ish-translator')
             print('Copied!')
