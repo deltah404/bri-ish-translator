@@ -6,7 +6,15 @@ import pkg_resources
 from datetime import datetime
 from random import choice
 
-def translate(t, rawTranslator=False, saveHistory=False):
+def translate(text:str, raw_translator=False, save_history=False):
+    '''
+    Translates an English string into a lowercase stereotypical interpretation of a British accent.
+        `str` `text` : The English text string that DBT should translate.
+        `bool` `rawTransator` : Whether DBT should print basic information found in the raw translator such as the DBT title.
+        `bool` `saveHistory` : Whether DBT should save translation history into the history/translator directory inside DBT.
+    '''
+    
+    text = text.lower()
     with open('././resources/config.json') as ifile:
         idict = json.load(ifile)
         name = idict['name']
@@ -17,7 +25,7 @@ def translate(t, rawTranslator=False, saveHistory=False):
 
     with open('././resources/menu-title.txt', 'r') as tfile:
         title = tfile.read()
-    if rawTranslator:
+    if raw_translator:
         print(title)
 
     required = {'wn', 'nltk'}
@@ -25,10 +33,10 @@ def translate(t, rawTranslator=False, saveHistory=False):
     missing = required - installed
 
     if missing:
-        if missing == required and rawTranslator:
+        if missing == required and raw_translator:
             print(
                 f'Thanks for supporting {name} v{version}. As this is your first time, please wait while everything gets set up.')
-        elif missing != required and rawTranslator:
+        elif missing != required and raw_translator:
             print(f'You don\'t have all the required files for DBT. Please wait while the missing items are installed.')
         python = sys.executable
         for m in missing:
@@ -44,7 +52,7 @@ def translate(t, rawTranslator=False, saveHistory=False):
         nltk.download('wordnet', quiet=True)
 
     nounCussing = ''
-    for word in t.split(' '):
+    for word in text.split(' '):
         if word in ['bloody', 'fuck', 'fucking', 'fuckin\'']:
             word = ''
         try:
@@ -88,7 +96,7 @@ def translate(t, rawTranslator=False, saveHistory=False):
         last = char
         filteredText += char
 
-    if saveHistory:
+    if save_history:
         now = datetime.now()
         with open(f'././history/translator/{now.strftime(r"%b-%d-%Y-%H-%M-%S")}', 'w') as hf:
             hf.write(filteredText.lower())
