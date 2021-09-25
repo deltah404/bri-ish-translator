@@ -33,7 +33,6 @@ def translate_german(text: str, raw_translator=False, save_history=False):
                 f'Thanks for supporting {name} v{version}. As this is your first time, please wait while everything gets set up.')
         elif missing != required and raw_translator:
             print(f'You don\'t have all the required files for DBT. Please wait while the missing items are installed.')
-        python = sys.executable
         for m in missing:
             subprocess.check_call(['pip', 'install', m],
                                   stdout=subprocess.PIPE)
@@ -94,7 +93,7 @@ def translate_german(text: str, raw_translator=False, save_history=False):
         
     if save_history:
         now = datetime.now()
-        with open(f'././history/german/{now.strftime(r"%b-%d-%Y-%H-%M-%S")}', 'w') as hf:
+        with open(f'././history/german/{now.strftime(r"%b-%d-%Y-%H-%M-%S")}.txt', 'w+') as hf:
             hf.write(combined.lower())
     
     return combined
