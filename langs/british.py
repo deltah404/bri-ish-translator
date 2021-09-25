@@ -1,4 +1,3 @@
-import os
 import json
 import sys
 import subprocess
@@ -6,27 +5,22 @@ import pkg_resources
 from datetime import datetime
 from random import choice
 
-def translate(text:str, raw_translator=False, save_history=False):
+def translate_british(text: str, raw_translator=False, save_history=False):
     '''
     Translates an English string into a lowercase stereotypical interpretation of a British accent.
         `str` `text` : The English text string that DBT should translate.
         `bool` `rawTransator` : Whether DBT should print basic information found in the raw translator such as the DBT title.
         `bool` `saveHistory` : Whether DBT should save translation history into the history/translator directory inside DBT.
     '''
-    
+
     text = text.lower()
     with open('././resources/config.json') as ifile:
         idict = json.load(ifile)
         name = idict['name']
         version = idict['version']
-        noun_exceptions = idict['nexceptions']
-        endings = idict['phraseendings']
-        word_replacements = idict['wordreplacements']
-
-    with open('././resources/menu-title.txt', 'r') as tfile:
-        title = tfile.read()
-    if raw_translator:
-        print(title)
+        noun_exceptions = idict['british']['nexceptions']
+        endings = idict['british']['phraseendings']
+        word_replacements = idict['british']['wordreplacements']
 
     required = {'wn', 'nltk'}
     installed = {pkg.key for pkg in pkg_resources.working_set}
@@ -98,15 +92,20 @@ def translate(text:str, raw_translator=False, save_history=False):
 
     if save_history:
         now = datetime.now()
-        with open(f'././history/translator/{now.strftime(r"%b-%d-%Y-%H-%M-%S")}', 'w') as hf:
+        with open(f'././history/british/{now.strftime(r"%b-%d-%Y-%H-%M-%S")}', 'w') as hf:
             hf.write(filteredText.lower())
-
+            
+    # Cleaning
+    name = version = noun_exceptions = endings = word_replacements = idict = None
     return filteredText
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": # checks if the original file is being run : runs normally as the default translator
+    with open('././resources/menu-title.txt', 'r') as tfile:
+        title = tfile.read()
+        print(title)
     str_to_translate = input('>> ').lower()
     print('...')
-    print(translate(str_to_translate, True, True))
+    print(translate_british(str_to_translate, True, True))
     print('\nPress enter to exit.')
     input()

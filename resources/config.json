@@ -1,45 +1,44 @@
 {
     "name": "deltah's bri'ish translator",
-    "version": "1.2.2",
-
-    "nexceptions": [
-        "a",
-        "fuck",
-        "i",
-        "why",
-        "me",
-        "it",
-        "mate",
-        "like"
-    ],
-    "phraseendings": [
-        ", my g",
-        ", inni' bruv",
-        ", still",
-        ", you silly cunt",
-        ", moite",
-        ""
-    ],
-    "wordreplacements": {
-        "i": "oi",
-        "gang": "mandem",
-        "with": "wiv",
-        "water": "wo'ah",
-        "bottle": "bo'owh",
-        "this": "'is",
-        "tea": "Tee",
-        "coffee": "Tee",
-        "have": "'av",
-        "that": "'at",
-        "mate": "moiTe",
-        "stupid": "sTewpid"
+    "version": "1.3.0",
+    "british": {
+        "nexceptions": [
+            "a",
+            "fuck",
+            "i",
+            "why",
+            "me",
+            "it",
+            "mate",
+            "like"
+        ],
+        "phraseendings": [
+            ", my g",
+            ", inni' bruv",
+            ", still",
+            ", you silly cunt",
+            ", moite",
+            ", you stupid twat",
+            ""
+        ],
+        "wordreplacements": {
+            "i": "oi",
+            "gang": "mandem",
+            "with": "wiv",
+            "water": "wo'ah",
+            "bottle": "bo'owh",
+            "this": "'is",
+            "tea": "Tee",
+            "coffee": "Tee",
+            "have": "'av",
+            "that": "'at",
+            "mate": "moiTe",
+            "stupid": "sTewpid"
+        }
     },
     "modulehotkeys": {
-        "Translator": "1",
-        "DBT Clean": "2"
+        "Bri'ish English": "1",
+        "German": "2"
     },
-    "cleanerhotkeys": {
-        "everything": "#"
-    },
-    "alsolist": "\nALSO:\nPress G to copy GitHub link\nPress H to reshow hotkey list\nPress Q to close\nPress S to open Suggestions and Reports page"
+    "alsolist": "\nALSO:\nPress Q to close\nPress G to copy GitHub link\nPress H to reshow hotkey list\nPress S to open Suggestions and Reports page"
 }

@@ -45,10 +45,9 @@ while True:
     s(0.1) #? cooldown to stop spam glitches
     try:
         if keyboard.is_pressed('1'):
-            openModule('./modules/translator.py')
-        #elif keyboard.is_pressed('2'):
-        #    openModule('./modules/cleaner.py')
-        # This will be implemented in a future update ^
+            openModule('./langs/british.py')
+        elif keyboard.is_pressed('2'):
+            openModule('./langs/german.py')
             
         elif keyboard.is_pressed('g'):
             clipboard.copy('https://github.com/deltah404/bri-ish-translator')
