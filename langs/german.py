@@ -93,7 +93,7 @@ def translate_german(text: str, raw_translator=False, save_history=False):
         
     if save_history:
         now = datetime.now()
-        with open(f'././history/german/{now.strftime(r"%b-%d-%Y-%H-%M-%S")}.txt', 'w+') as hf:
+        with open(f'././history/german/{now.strftime(r"%b-%d-%Y-%H-%M-%S")}.txt', 'x') as hf:
             hf.write(combined.lower())
     
     return combined

@@ -1,0 +1,1 @@
+This is a filler file to register the empty folders in which history will be saved. This file can be safely deleted.
